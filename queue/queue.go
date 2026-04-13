@@ -47,7 +47,7 @@ func (q *Queue[T]) bufCap() int { return len(q.items) }
 func (q *Queue[T]) grow() {
 	newCap := max(q.bufCap()*2, minCap)
 	newItems := make([]T, newCap)
-	for i := range q.count {
+	for i := 0; i < q.count; i++ {
 		newItems[i] = q.items[(q.head+i)%q.bufCap()]
 	}
 	q.items = newItems
@@ -98,7 +98,7 @@ func (q *Queue[T]) IsEmpty() bool { return q.count == 0 }
 // Clear removes all elements from the queue.
 func (q *Queue[T]) Clear() {
 	var zero T
-	for i := range q.count {
+	for i := 0; i < q.count; i++ {
 		q.items[(q.head+i)%q.bufCap()] = zero
 	}
 	q.head = 0
@@ -109,7 +109,7 @@ func (q *Queue[T]) Clear() {
 // The first element of the returned slice is the current front.
 func (q *Queue[T]) ToSlice() []T {
 	out := make([]T, q.count)
-	for i := range q.count {
+	for i := 0; i < q.count; i++ {
 		out[i] = q.items[(q.head+i)%q.bufCap()]
 	}
 	return out

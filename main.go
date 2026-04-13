@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/anwar-arif/go-dsa/dsa/priorityqueue"
+	"github.com/anwar-arif/go-dsa/priorityqueue"
 )
 
 func main() {

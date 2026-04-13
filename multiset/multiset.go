@@ -255,7 +255,7 @@ func toSlice[T any](n *node[T], out *[]T) {
 		return
 	}
 	toSlice(n.left, out)
-	for range n.count {
+	for i := 0; i < n.count; i++ {
 		*out = append(*out, n.key)
 	}
 	toSlice(n.right, out)
